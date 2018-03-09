@@ -1,6 +1,12 @@
 # sharesniffer
 Network share sniffer and auto-mounter for crawling remote file systems
 
+     ____ _  _ ____ ____ ____          /
+     ==== |--| |--| |--< |===         ["]  ,< ,,_      
+     ____ __ _ _ ____ ____ ____ ____  [~]\/   |__|      
+     ==== | \| | |--- |--- |=== |--<  OOO
+
+
 ## How to use
 
 Example to find all hosts in 192.168.56.0/24 network and auto-mount at /mnt:
