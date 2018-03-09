@@ -15,6 +15,14 @@ Example to find all hosts in 192.168.56.0/24 network and auto-mount at /mnt:
 python sniffshares.py -l 4 --hosts 192.168.56.0/24 -a -m /mnt
 ```
 
+## Requirements
+
+- python 2/3
+- nmap https://nmap.org
+- python-nmap (install with pip)
+- netifaces (install with pip)
+
+
 ### CLI Options
 
 ```
