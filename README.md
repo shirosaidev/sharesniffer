@@ -2,8 +2,7 @@
 <img src="https://github.com/shirosaidev/diskover/blob/master/docs/sharesniffer.png?raw=true" alt="sharesniffer" width="251" height="140" hspace="10" vspace="10" align="left" />
 Network share sniffer and auto-mounter for crawling remote file systems
 
-sharesniffer is a network analysis tool for finding open and closed file shares on your local network. It includes auto-network diskovery and auto-mounting of any open cifs and nfs shares.
-
+<p>sharesniffer is a network analysis tool for finding open and closed file shares on your local network. It includes auto-network diskovery and auto-mounting of any open cifs and nfs shares.</p><br />
 
 
 ## How to use
