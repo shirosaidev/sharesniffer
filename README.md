@@ -1,7 +1,6 @@
 # sharesniffer
+<img src="https://github.com/shirosaidev/diskover/blob/master/docs/sharesniffer.png?raw=true" alt="sharesniffer" width="251" height="140" hspace="10" align="left" />
 Network share sniffer and auto-mounter for crawling remote file systems
-
-<img src="https://github.com/shirosaidev/diskover/blob/master/docs/sharesniffer.png?raw=true" alt="sharesniffer" width="251" height="140" hspace="10" />
 
 ## How to use
 
