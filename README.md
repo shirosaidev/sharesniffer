@@ -1,11 +1,7 @@
 # sharesniffer
 Network share sniffer and auto-mounter for crawling remote file systems
 
-     ____ _  _ ____ ____ ____          /
-     ==== |--| |--| |--< |===         ["]  ,< ,,_      
-     ____ __ _ _ ____ ____ ____ ____  [~]\/   |__|      
-     ==== | \| | |--- |--- |=== |--<  OOO
-
+<img src="https://github.com/shirosaidev/diskover/blob/master/docs/sharesniffer.png?raw=true" alt="sharesniffer" width="251" height="140" hspace="10" />
 
 ## How to use
 
