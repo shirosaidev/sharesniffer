@@ -32,7 +32,7 @@ import sys
 from random import randint
 
 
-SHARESNIFFER_VERSION = '0.1-b.1'
+SHARESNIFFER_VERSION = '0.1-b.2'
 __version__ = SHARESNIFFER_VERSION
 
 class sniffer:
@@ -91,7 +91,10 @@ class sniffer:
             shares = {'host': host, 'openshares': [], 'closedshares': []}
             output = self.nm.scan(host, '111',
                                   arguments='%s --script nfs-showmount,nfs-ls' % self.nmapargs)
-            nfsshowmount = output['scan'][host]['tcp'][111]['script']['nfs-showmount'].strip().split('\n')
+            try:
+                nfsshowmount = output['scan'][host]['tcp'][111]['script']['nfs-showmount'].strip().split('\n')
+            except KeyError:
+                raise KeyError("Can't find nmap nse scripts nfs-showmount, nfs-ls")
             nfsls = output['scan'][host]['tcp'][111]['script']['nfs-ls'].strip().split('\n')
             openshares = []
             closedshares = []
@@ -119,7 +122,10 @@ class sniffer:
             else:
                 output = self.nm.scan(host, '445',
                                       arguments='%s --script smb-enum-shares' % self.nmapargs)
-            sharelist = output['scan'][host]['hostscript'][0]['output'].strip().split('\n')
+            try:
+                sharelist = output['scan'][host]['hostscript'][0]['output'].strip().split('\n')
+            except KeyError:
+                raise KeyError("Can't find nmap nse script smb-enum-shares")
             openshares = []
             closedshares = []
             x = 0
