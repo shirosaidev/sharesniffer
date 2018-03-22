@@ -20,6 +20,10 @@ python sniffshares.py -l 4 --hosts 192.168.56.0/24 -a -m /mnt
 - python-nmap (pip install python-nmap)
 - netifaces (pip install netifaces)
 
+### Download
+
+[latest release](https://github.com/shirosaidev/sharesniffer/releases/latest)
+
 
 ### CLI Options
 
