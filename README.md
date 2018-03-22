@@ -22,7 +22,11 @@ python sniffshares.py -l 4 --hosts 192.168.56.0/24 -a -m /mnt
 
 ### Download
 
-[Latest release](https://github.com/shirosaidev/sharesniffer/releases/latest)
+```shell
+$ git clone https://github.com/shirosaidev/sharesniffer.git
+$ cd sharesniffer
+```
+[Download latest version](https://github.com/shirosaidev/sharesniffer/releases/latest)
 
 
 ### CLI Options
