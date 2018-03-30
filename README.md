@@ -14,9 +14,10 @@ python sniffshares.py -l 4 --hosts 192.168.56.0/24 -a -m /mnt
 
 ## Requirements
 
-- python 2.7 or 3.5
-- nmap https://nmap.org in PATH
-- nmap scripts (.nse) in PATH (on Linux/macOS they are usually in /usr/local/share/nmap/), if you don't have the ones required are also in the rootdir of sharesniffer.
+- Python 2.7 or 3.5
+- Linux or macOS
+- Nmap https://nmap.org in PATH
+- Nmap scripts (.nse) in PATH (on Linux/macOS they are usually in /usr/local/share/nmap/), if you don't have the ones required are also in the rootdir of sharesniffer.
 - python-nmap (pip install python-nmap)
 - netifaces (pip install netifaces)
 
