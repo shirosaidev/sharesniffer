@@ -32,8 +32,11 @@ import sys
 from random import randint
 
 
-SHARESNIFFER_VERSION = '0.1-b.2'
+SHARESNIFFER_VERSION = '0.1-b.3'
 __version__ = SHARESNIFFER_VERSION
+
+nmapdatadir = os.path.dirname(os.path.realpath(__file__))
+
 
 class sniffer:
     def __init__(self, hosts=None, excludehosts=None, nfs=False, smb=False, smbuser='guest', smbpass=''):
@@ -90,7 +93,8 @@ class sniffer:
         for host in hostlist:
             shares = {'host': host, 'openshares': [], 'closedshares': []}
             output = self.nm.scan(host, '111',
-                                  arguments='%s --script nfs-showmount,nfs-ls' % self.nmapargs)
+                                  arguments='%s --datadir %s --script nfs-showmount,nfs-ls'
+                                            % (self.nmapargs, nmapdatadir))
             try:
                 nfsshowmount = output['scan'][host]['tcp'][111]['script']['nfs-showmount'].strip().split('\n')
             except KeyError:
@@ -117,11 +121,13 @@ class sniffer:
             shares = {'host': host, 'openshares': [], 'closedshares': []}
             if self.smbuser != '' and self.smbpass != '':
                 output = self.nm.scan(host, '445',
-                                      arguments='%s --script smb-enum-shares \
-                                      --script-args smbusername=%s,smbpassword=%s' % (self.nmapargs, self.smbuser, self.smbpass))
+                                      arguments='%s --datadir %s --script smb-enum-shares \
+                                      --script-args smbusername=%s,smbpassword=%s'
+                                                % (self.nmapargs, nmapdatadir, self.smbuser, self.smbpass))
             else:
                 output = self.nm.scan(host, '445',
-                                      arguments='%s --script smb-enum-shares' % self.nmapargs)
+                                      arguments='%s --datadir %s --script smb-enum-shares'
+                                                % (self.nmapargs, nmapdatadir))
             try:
                 sharelist = output['scan'][host]['hostscript'][0]['output'].strip().split('\n')
             except KeyError:
