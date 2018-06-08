@@ -12,12 +12,18 @@ Example to find all hosts in 192.168.56.0/24 network and auto-mount at /mnt:
 python sniffshares.py -l 4 --hosts 192.168.56.0/24 -a -m /mnt
 ```
 
+If you get an error about not being able to find nse scripts, run this before sniffshares:
+
+```sh
+export NMAPDIR=/path/to/sniffshares
+```
+
 ## Requirements
 
 - Python 2.7 or 3.5
 - Linux or macOS
 - Nmap https://nmap.org in PATH
-- Nmap scripts (.nse) in PATH (on Linux/macOS they are usually in /usr/local/share/nmap/), if you don't have the ones required are also in the rootdir of sharesniffer.
+- Nmap scripts (.nse) (on Linux/macOS they are usually in /usr/local/share/nmap/scripts/ or /usr/share/nmap/scripts/), if you don't have the ones required, they are also in the scripts folder of sharesniffer.
 - python-nmap (pip install python-nmap)
 - netifaces (pip install netifaces)
 
