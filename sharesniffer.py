@@ -35,7 +35,7 @@ from random import randint
 SHARESNIFFER_VERSION = '0.1-b.3'
 __version__ = SHARESNIFFER_VERSION
 
-nmapdatadir = os.path.dirname(os.path.realpath(__file__))
+nmapdatadir = os.path.dirname(os.path.realpath(__file__)) + '/scripts'
 
 
 class sniffer:
