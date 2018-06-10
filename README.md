@@ -9,7 +9,7 @@
 Example to find all hosts in 192.168.56.0/24 network and auto-mount at /mnt:
 
 ```sh
-python sniffshares.py -l 4 --hosts 192.168.56.0/24 -a -m /mnt
+python sharesniffer.py -l 4 --hosts 192.168.56.0/24 -a -m /mnt
 ```
 
 ## Requirements
@@ -33,12 +33,12 @@ $ cd sharesniffer
 ### CLI Options
 
 ```
-usage: sniffshares.py [-h] [--hosts HOSTS] [-e EXCLUDEHOSTS] [-l SPEEDLEVEL]
-                      [-n] [--nfsmntopt NFSMNTOPT] [-s]
-                      [--smbmntopt SMBMNTOPT] [--smbtype SMBTYPE]
-                      [--smbuser SMBUSER] [--smbpass SMBPASS] [-a]
-                      [-m MOUNTPOINT] [-p MOUNTPREFIX] [-v] [--debug] [-q]
-                      [-V]
+usage: sharesniffer.py [-h] [--hosts HOSTS] [-e EXCLUDEHOSTS] [-l SPEEDLEVEL]
+                       [-n] [--nfsmntopt NFSMNTOPT] [-s]
+                       [--smbmntopt SMBMNTOPT] [--smbtype SMBTYPE]
+                       [--smbuser SMBUSER] [--smbpass SMBPASS] [-a]
+                       [-m MOUNTPOINT] [-p MOUNTPREFIX] [-v] [--debug] [-q]
+                       [-V]
 
 optional arguments:
   -h, --help            show this help message and exit
