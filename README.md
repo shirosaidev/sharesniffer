@@ -12,7 +12,7 @@ Example to find all hosts on any local network with open/closed nfs/smb shares:
 python sharesniffer.py
 ```
 
-Example to find all hosts in 192.168.56.0/24 network, excluding possible gateway/firewalls and auto-mount any open nfs/smb shares at /mnt:
+Example to find all hosts in 192.168.56.0/24 network, excluding possible router/firewalls, and auto-mount any open nfs/smb shares at /mnt:
 
 ```sh
 python sharesniffer.py -l 4 --hosts 192.168.56.0/24 -e 10.10.56.1,10.10.56.254 -a -m /mnt
