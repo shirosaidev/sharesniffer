@@ -32,7 +32,7 @@ import sys
 from random import randint
 
 
-SHARESNIFFER_VERSION = '0.1-b.3'
+SHARESNIFFER_VERSION = '0.1-b.4'
 __version__ = SHARESNIFFER_VERSION
 
 nmapdatadir = os.path.dirname(os.path.realpath(__file__)) + '/scripts'
@@ -98,7 +98,8 @@ class sniffer:
             try:
                 nfsshowmount = output['scan'][host]['tcp'][111]['script']['nfs-showmount'].strip().split('\n')
             except KeyError:
-                raise KeyError("Can't find nmap nse scripts nfs-showmount, nfs-ls")
+                logger.debug('nm scan output: ' + output)
+                raise KeyError("nmap nse script error")
             nfsls = output['scan'][host]['tcp'][111]['script']['nfs-ls'].strip().split('\n')
             openshares = []
             closedshares = []
@@ -131,7 +132,8 @@ class sniffer:
             try:
                 sharelist = output['scan'][host]['hostscript'][0]['output'].strip().split('\n')
             except KeyError:
-                raise KeyError("Can't find nmap nse script smb-enum-shares")
+                logger.debug('nm scan output: ' + output)
+                raise KeyError("nmap nse script error")
             openshares = []
             closedshares = []
             x = 0
@@ -493,8 +495,9 @@ if __name__ == "__main__":
          v%s               
 
         \033[0m""" % (color, SHARESNIFFER_VERSION)
-        print(banner)
-        print('\n')
+        print(banner + '\n')
+
+    logger.debug('Nmap datadir: ' + nmapdatadir)
 
     # get shares and mountpoints
     shares = sniff_network()
