@@ -32,10 +32,8 @@ import sys
 from random import randint
 
 
-SHARESNIFFER_VERSION = '0.1-b.4'
+SHARESNIFFER_VERSION = '0.1-b.5'
 __version__ = SHARESNIFFER_VERSION
-
-nmapdatadir = os.path.dirname(os.path.realpath(__file__)) + '/scripts'
 
 
 class sniffer:
@@ -93,14 +91,14 @@ class sniffer:
         for host in hostlist:
             shares = {'host': host, 'openshares': [], 'closedshares': []}
             output = self.nm.scan(host, '111',
-                                  arguments='%s --datadir %s --script nfs-showmount,nfs-ls'
-                                            % (self.nmapargs, nmapdatadir))
+                                  arguments='%s --datadir %s --script %s/nfs-showmount.nse,%s/nfs-ls.nse'
+                                            % (self.nmapargs, nmapdatadir, nmapdatadir, nmapdatadir))
+            logger.debug('nm scan output: ' + str(output))
             try:
                 nfsshowmount = output['scan'][host]['tcp'][111]['script']['nfs-showmount'].strip().split('\n')
+                nfsls = output['scan'][host]['tcp'][111]['script']['nfs-ls'].strip().split('\n')
             except KeyError:
-                logger.debug('nm scan output: ' + output)
                 raise KeyError("nmap nse script error")
-            nfsls = output['scan'][host]['tcp'][111]['script']['nfs-ls'].strip().split('\n')
             openshares = []
             closedshares = []
             sharedict = {'sharename': nfsshowmount[0].strip().split(' ')[0]}
@@ -122,17 +120,17 @@ class sniffer:
             shares = {'host': host, 'openshares': [], 'closedshares': []}
             if self.smbuser != '' and self.smbpass != '':
                 output = self.nm.scan(host, '445',
-                                      arguments='%s --datadir %s --script smb-enum-shares \
+                                      arguments='%s --datadir %s --script %s/smb-enum-shares.nse \
                                       --script-args smbusername=%s,smbpassword=%s'
-                                                % (self.nmapargs, nmapdatadir, self.smbuser, self.smbpass))
+                                                % (self.nmapargs, nmapdatadir, nmapdatadir, self.smbuser, self.smbpass))
             else:
                 output = self.nm.scan(host, '445',
                                       arguments='%s --datadir %s --script smb-enum-shares'
                                                 % (self.nmapargs, nmapdatadir))
+            logger.debug('nm scan output: ' + str(output))
             try:
                 sharelist = output['scan'][host]['hostscript'][0]['output'].strip().split('\n')
             except KeyError:
-                logger.debug('nm scan output: ' + output)
                 raise KeyError("nmap nse script error")
             openshares = []
             closedshares = []
@@ -497,6 +495,16 @@ if __name__ == "__main__":
         \033[0m""" % (color, SHARESNIFFER_VERSION)
         print(banner + '\n')
 
+    # check for Nmap nse scripts directory
+    nmapdatadir = None
+    nmap_script_dirs = ['/usr/local/share/nmap/scripts', '/usr/share/nmap/scripts']
+    for path in nmap_script_dirs:
+        if os.path.isdir(path):
+            nmapdatadir = path
+            break
+    if not nmapdatadir:
+        print("Unable to locate nmap nse scripts directory")
+        sys.exit(1)
     logger.debug('Nmap datadir: ' + nmapdatadir)
 
     # get shares and mountpoints
