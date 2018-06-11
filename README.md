@@ -22,8 +22,8 @@ python sharesniffer.py -l 4 --hosts 192.168.56.0/24 -e 1192.168.56.1,192.168.56.
 
 - Python 2.7. or 3.5/3.6 (tested on 2.7.15 and 3.6.5)
 - Linux or macOS
-- Nmap https://nmap.org in PATH
-- Nmap scripts (.nse) (on Linux/macOS they are usually in /usr/local/share/nmap/scripts/ or /usr/share/nmap/scripts/), if you don't have the ones required, they are also in the scripts folder of sharesniffer. If you get any unable to find nse scripts errors, read more about nmap nse here https://nmap.org/book/man-nse.html.
+- Nmap https://nmap.org 7. in PATH (tested on 7.70)
+- Nmap scripts (.nse) (on Linux/macOS they are usually in /usr/local/share/nmap/scripts/ or /usr/share/nmap/scripts/)
 - python-nmap (pip install python-nmap)
 - netifaces (pip install netifaces)
 
