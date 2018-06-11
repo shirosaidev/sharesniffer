@@ -6,18 +6,24 @@
 
 ## How to use
 
-Example to find all hosts in 192.168.56.0/24 network and auto-mount at /mnt:
+Example to find all hosts on any local network with open/closed nfs/smb shares:
 
 ```sh
-python sniffshares.py -l 4 --hosts 192.168.56.0/24 -a -m /mnt
+python sharesniffer.py
+```
+
+Example to find all hosts in 192.168.56.0/24 network, excluding possible router/firewalls, and auto-mount any open nfs/smb shares at /mnt:
+
+```sh
+python sharesniffer.py -l 4 --hosts 192.168.56.0/24 -e 1192.168.56.1,192.168.56.254 -a -m /mnt
 ```
 
 ## Requirements
 
-- Python 2.7 or 3.5
+- Python 2.7. or 3.5/3.6 (tested on 2.7.15 and 3.6.5)
 - Linux or macOS
 - Nmap https://nmap.org in PATH
-- Nmap scripts (.nse) (on Linux/macOS they are usually in /usr/local/share/nmap/scripts/ or /usr/share/nmap/scripts/), if you don't have the ones required, they are also in the scripts folder of sharesniffer.
+- Nmap scripts (.nse) (on Linux/macOS they are usually in /usr/local/share/nmap/scripts/ or /usr/share/nmap/scripts/), if you don't have the ones required, they are also in the scripts folder of sharesniffer. If you get any unable to find nse scripts errors, read more about nmap nse here https://nmap.org/book/man-nse.html.
 - python-nmap (pip install python-nmap)
 - netifaces (pip install netifaces)
 
@@ -33,12 +39,12 @@ $ cd sharesniffer
 ### CLI Options
 
 ```
-usage: sniffshares.py [-h] [--hosts HOSTS] [-e EXCLUDEHOSTS] [-l SPEEDLEVEL]
-                      [-n] [--nfsmntopt NFSMNTOPT] [-s]
-                      [--smbmntopt SMBMNTOPT] [--smbtype SMBTYPE]
-                      [--smbuser SMBUSER] [--smbpass SMBPASS] [-a]
-                      [-m MOUNTPOINT] [-p MOUNTPREFIX] [-v] [--debug] [-q]
-                      [-V]
+usage: sharesniffer.py [-h] [--hosts HOSTS] [-e EXCLUDEHOSTS] [-l SPEEDLEVEL]
+                       [-n] [--nfsmntopt NFSMNTOPT] [-s]
+                       [--smbmntopt SMBMNTOPT] [--smbtype SMBTYPE]
+                       [--smbuser SMBUSER] [--smbpass SMBPASS] [-a]
+                       [-m MOUNTPOINT] [-p MOUNTPREFIX] [-v] [--debug] [-q]
+                       [-V]
 
 optional arguments:
   -h, --help            show this help message and exit
