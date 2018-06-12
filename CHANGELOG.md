@@ -1,5 +1,11 @@
 # sharesniffer Change Log
 
+## [0.1-b.6] = 2018-06-14
+### changed
+- removed "s" from --host-timeout nmap arg string
+### fixed
+- spaces between nmap args
+
 ## [0.1-b.5] = 2018-06-12
 ### added
 - Nmap 7.70 support

@@ -32,7 +32,7 @@ import sys
 from random import randint
 
 
-SHARESNIFFER_VERSION = '0.1-b.5'
+SHARESNIFFER_VERSION = '0.1-b.6'
 __version__ = SHARESNIFFER_VERSION
 
 
@@ -80,11 +80,11 @@ class sniffer:
 
         if self.excludehosts:
             self.nmapargs = '--exclude ' + self.excludehosts + \
-                            ' -n -T'+t+' -Pn -PS111,445 --open --min-parallelism '+min_p+'--max-parallelism '+max_p+' ' \
-                            '--max-retries '+max_ret+' --min-rate '+min_r+' --max-rate '+max_r+'--host-timeout '+host_t+'s'
+                            ' -n -T'+t+' -Pn -PS111,445 --open --min-parallelism '+min_p+' --max-parallelism '+max_p+' ' \
+                            '--max-retries '+max_ret+' --min-rate '+min_r+' --max-rate '+max_r+' --host-timeout '+host_t
         else:
-            self.nmapargs = '-n -T'+t+' -Pn -PS111,445 --open --min-parallelism '+min_p+'--max-parallelism '+max_p+' ' \
-                            '--max-retries '+max_ret+' --min-rate '+min_r+' --max-rate '+max_r+'--host-timeout '+host_t+'s'
+            self.nmapargs = '-n -T'+t+' -Pn -PS111,445 --open --min-parallelism '+min_p+' --max-parallelism '+max_p+' ' \
+                            '--max-retries '+max_ret+' --min-rate '+min_r+' --max-rate '+max_r+' --host-timeout '+host_t
 
     def get_nfs_shares(self, hostlist):
         nfsshares = []
