@@ -1,6 +1,13 @@
 # sharesniffer Change Log
 
-## [0.1-b.6] = 2018-06-14
+## [0.1-b.7] = 2018-06-13
+### changed
+- if nse scripts return no results for host, print message and continue trying other hosts
+### fixed
+- no results from nse scripts causing error and exit
+- various bug fixes
+
+## [0.1-b.6] = 2018-06-13
 ### changed
 - removed "s" from --host-timeout nmap arg string
 ### fixed

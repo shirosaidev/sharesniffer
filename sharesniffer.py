@@ -33,7 +33,7 @@ import sys
 from random import randint
 
 
-SHARESNIFFER_VERSION = '0.1-b.6'
+SHARESNIFFER_VERSION = '0.1-b.7'
 __version__ = SHARESNIFFER_VERSION
 
 
@@ -98,8 +98,9 @@ class sniffer:
             try:
                 nfsshowmount = output['scan'][host]['tcp'][111]['script']['nfs-showmount'].strip().split('\n')
                 nfsls = output['scan'][host]['tcp'][111]['script']['nfs-ls'].strip().split('\n')
-            except KeyError as e:
-                raise KeyError("nm error: %s" % e)
+            except KeyError:
+                print('%s PORT 111/tcp OPEN (rpcbind) but no results from nse script' % host)
+                continue
             openshares = []
             closedshares = []
             sharedict = {'sharename': nfsshowmount[0].strip().split(' ')[0]}
@@ -126,13 +127,14 @@ class sniffer:
                                                 % (self.nmapargs, nmapdatadir, nmapdatadir, self.smbuser, self.smbpass))
             else:
                 output = self.nm.scan(host, '445',
-                                      arguments='%s --datadir %s --script smb-enum-shares'
-                                                % (self.nmapargs, nmapdatadir))
+                                      arguments='%s --datadir %s --script %s/smb-enum-shares.nse'
+                                                % (self.nmapargs, nmapdatadir, nmapdatadir))
             logger.debug('nm scan output: ' + str(output))
             try:
                 sharelist = output['scan'][host]['hostscript'][0]['output'].strip().split('\n')
-            except KeyError as e:
-                raise KeyError("nm error: %s" % e)
+            except KeyError:
+                print('%s PORT 445/tcp OPEN (microsoft-ds) but no results from nse script' % host)
+                continue
             openshares = []
             closedshares = []
             x = 0
@@ -215,7 +217,7 @@ class sniffer:
                     if self.nm[host][proto][port]['state'] == 'open':
                         if port == 111:
                             hostlist_nfs.append(host)
-                        elif port == 445:
+                        if port == 445:
                             hostlist_smb.append(host)
         return hostlist_nfs, hostlist_smb
 
@@ -328,7 +330,7 @@ def sniff_network():
                     smbpass=args.smbpass)
     hostlist_nfs, hostlist_smb = sniff.sniff_hosts()
     shares = {'nfsshares': [], 'smbshares': []}
-    if len(hostlist_nfs) > 0 or len(hostlist_nfs) > 0:
+    if len(hostlist_nfs) > 0 or len(hostlist_smb) > 0:
         if len(hostlist_nfs) > 0:
             shares['nfsshares'] = sniff.get_nfs_shares(hostlist_nfs)
             if len(shares['nfsshares']) > 0 and not args.quiet:
