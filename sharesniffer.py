@@ -2,12 +2,13 @@
 # -*- coding: utf-8 -*-
 """sharesniffer.py - sniff out and find all smb/nfs shares
 on the local network and try to mount them for crawling.
-Requires python-nmap, netifaces modules and nmap in PATH.
+Requires python-nmap, netifaces modules, Nmap in PATH
+and Nmap nse scripts.
 See README.md or https://github.com/shirosaidev/sharesniffer
 for more information.
 
 Copyright (C) Chris Park 2018
-sniffshares is released under the Apache 2.0 license. See
+sharesniffer is released under the Apache 2.0 license. See
 LICENSE for the full license text.
 """
 
@@ -97,8 +98,8 @@ class sniffer:
             try:
                 nfsshowmount = output['scan'][host]['tcp'][111]['script']['nfs-showmount'].strip().split('\n')
                 nfsls = output['scan'][host]['tcp'][111]['script']['nfs-ls'].strip().split('\n')
-            except KeyError:
-                raise KeyError("nmap nse script error")
+            except KeyError as e:
+                raise KeyError("nm error: %s" % e)
             openshares = []
             closedshares = []
             sharedict = {'sharename': nfsshowmount[0].strip().split(' ')[0]}
@@ -130,8 +131,8 @@ class sniffer:
             logger.debug('nm scan output: ' + str(output))
             try:
                 sharelist = output['scan'][host]['hostscript'][0]['output'].strip().split('\n')
-            except KeyError:
-                raise KeyError("nmap nse script error")
+            except KeyError as e:
+                raise KeyError("nm error: %s" % e)
             openshares = []
             closedshares = []
             x = 0
@@ -448,7 +449,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     # set up logging
-    logger = logging.getLogger('sniffshares')
+    logger = logging.getLogger('sharesniffer')
     logger.setLevel(logging.INFO)
     logging.addLevelName(
         logging.INFO, "\033[1;32m%s\033[1;0m"
