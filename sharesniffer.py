@@ -33,7 +33,7 @@ import sys
 from random import randint
 
 
-SHARESNIFFER_VERSION = '0.1-b.7'
+SHARESNIFFER_VERSION = '0.1-b.8'
 __version__ = SHARESNIFFER_VERSION
 
 

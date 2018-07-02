@@ -1,5 +1,9 @@
 # sharesniffer Change Log
 
+## [0.1-b.8] = 2018-07-02
+### fixed
+- bug fix for traceback TypeError in get_nfs_shares function (pyneda pr d0f5888)
+
 ## [0.1-b.7] = 2018-06-13
 ### changed
 - if nse scripts return no results for host, print message and continue trying other hosts
