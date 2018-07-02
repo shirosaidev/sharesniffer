@@ -109,11 +109,11 @@ class sniffer:
                 continue
             else:
                 openshares.append(sharedict)
-        for share in openshares:
-            shares['openshares'].append(share['sharename'])
-        for share in closedshares:
-            shares['closedshares'].append(share['sharename'])
-        nfsshares.append(shares)
+            for share in openshares:
+                shares['openshares'].append(share['sharename'])
+            for share in closedshares:
+                shares['closedshares'].append(share['sharename'])
+            nfsshares.append(shares)
         return nfsshares
 
     def get_smb_shares(self, hostlist):
@@ -333,7 +333,7 @@ def sniff_network():
     if len(hostlist_nfs) > 0 or len(hostlist_smb) > 0:
         if len(hostlist_nfs) > 0:
             shares['nfsshares'] = sniff.get_nfs_shares(hostlist_nfs)
-            if len(shares['nfsshares']) > 0 and not args.quiet:
+            if isinstance(shares['nfsshares'], list) and len(shares['nfsshares']) > 0 and not args.quiet:
                 print('\n******************************* NFS SHARES ********************************\n')
                 for host in shares['nfsshares']:
                     print('host: %s  open: %s  closed: %s' % (host['host'],
