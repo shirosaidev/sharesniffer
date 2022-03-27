@@ -1,7 +1,7 @@
 # sharesniffer
 
-[![License](https://img.shields.io/github/license/shirosaidev/stocksight.svg?label=License&maxAge=86400)](./LICENSE)
-[![Release](https://img.shields.io/github/release/shirosaidev/stocksight.svg?label=Release&maxAge=60)](https://github.com/shirosaidev/stocksight/releases/latest)
+[![License](https://img.shields.io/github/license/shirosaidev/sharesniffer.svg?label=License&maxAge=86400)](./LICENSE)
+[![Release](https://img.shields.io/github/release/shirosaidev/sharesniffer.svg?label=Release&maxAge=60)](https://github.com/shirosaidev/sharesniffer/releases/latest)
 [![Sponsor Patreon](https://img.shields.io/badge/Sponsor%20%24-Patreon-brightgreen.svg)](https://www.patreon.com/shirosaidev)
 [![Donate PayPal](https://img.shields.io/badge/Donate%20%24-PayPal-brightgreen.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=CLF223XAS4W72)
 
