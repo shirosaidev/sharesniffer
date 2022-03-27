@@ -1,5 +1,5 @@
 # sharesniffer
-<img src="https://github.com/shirosaidev/diskover/blob/master/docs/sharesniffer.png?raw=true" alt="sharesniffer" width="251" height="140" hspace="20" vspace="20" align="left" />
+<img src="https://github.com/shirosaidev/sharesniffer/blob/master/docs/sharesniffer.png?raw=true" alt="sharesniffer" width="251" height="140" hspace="20" vspace="20" align="left" />
 
 <p>sharesniffer is a network analysis tool for finding open and closed file shares on your local network. It includes auto-network discovery and auto-mounting of any open cifs and nfs shares.</p><br />
 <br />
